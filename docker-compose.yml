@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  graphql:
+    image: graphql
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+  db:
+    image: postgres:13
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=ttadmin
+      - POSTGRES_PASSWORD=ttadmin
+      - POSTGRES_DB=ttadmin_dev
+    volumes:
+      - graph_db:/var/lib/postgresql/data
+  
+volumes:
+  graph_db:
