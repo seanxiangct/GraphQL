@@ -1,4 +1,3 @@
-import email
 from enum import Enum
 
 import strawberry
@@ -16,10 +15,6 @@ class StateEnum(Enum):
     NT = "NT"
     ACT = "ACT"
 
-@strawberry.type
-class Person:
-    email: str
-    address: "Address"
 
 @strawberry.type
 class Address:
@@ -28,12 +23,30 @@ class Address:
     city: str
     state: StateEnum
 
+def get_addresses(name: str) -> list[Address]:
+    return [
+        Address(number=1, street="Main Street", city="Sydney", state=StateEnum.NSW),
+        Address(number=2, street="Main Street", city="Sydney", state=StateEnum.NSW),
+    ]
+    
+
+@strawberry.type
+class Person:
+    name: str
+    email: str
+    # address: Address = strawberry.field(resolver=get_addresses(name))
+    @strawberry.field
+    def address(self) -> list[Address]:
+        return get_addresses(self.name)
 
 @strawberry.type
 class Query:
     @strawberry.field
-    def user(self) -> Person:
-        return None
+    def Person(self) -> Person:
+        return Person(
+            name="Patrick",
+            email="test@email.com"
+        )
 
 schema = strawberry.Schema(query=Query)
 
