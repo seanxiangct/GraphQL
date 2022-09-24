@@ -4,3 +4,4 @@ uvicorn[standard]==0.15.0
 gunicorn==20.1.0
 strawberry-graphql[fastapi]==0.131.5
 sqlalchemy==1.4.41
+strawberry-sqlalchemy-mapper==0.1.0
