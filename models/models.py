@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Column, ForeignKey, Integer, String, Table, Enum
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, Enum, Identity
 from sqlalchemy.orm import relationship
 
 from database.config import Base
@@ -25,7 +25,7 @@ association_table = Table(
 class Person(Base):
     __tablename__ = "person"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, Identity(), primary_key=True, index=True)
     name = Column(String)
     email = Column(String, unique=True)
     addresses = relationship("Address", secondary=association_table, back_populates="persons")
@@ -33,7 +33,7 @@ class Person(Base):
 class Address(Base):
     __tablename__ = "address"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(), primary_key=True)
     number = Column(Integer)
     street = Column(String)
     city = Column(String)

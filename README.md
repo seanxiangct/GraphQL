@@ -11,8 +11,8 @@ To connect to the database:
 1. shell into the database image
 2. run `psql -U postgres graph_db`
 
-To initialise database table, with all containers running, run: 
+To initialise database table, with all containers running, run:
 
-1. 
+`docker-compose exec graphql alembic upgrade head`
 
 ## TO Test
