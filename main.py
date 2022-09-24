@@ -24,20 +24,25 @@ class Address:
     state: StateEnum
 
 def get_addresses(name: str) -> list[Address]:
+    # TODO: get addresses from DB
     return [
         Address(number=1, street="Main Street", city="Sydney", state=StateEnum.NSW),
         Address(number=2, street="Main Street", city="Sydney", state=StateEnum.NSW),
     ]
-    
+
 
 @strawberry.type
 class Person:
+    # id: uuid.UUID
     name: str
     email: str
     # address: Address = strawberry.field(resolver=get_addresses(name))
     @strawberry.field
     def address(self) -> list[Address]:
         return get_addresses(self.name)
+
+
+persons: list[Person] = []
 
 @strawberry.type
 class Query:
@@ -47,6 +52,7 @@ class Query:
             name="Patrick",
             email="test@email.com"
         )
+
 
 schema = strawberry.Schema(query=Query)
 
