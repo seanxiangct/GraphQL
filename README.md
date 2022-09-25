@@ -1,4 +1,4 @@
-# User GraphQL
+# GraphQL
 
 GraphQL Endpoint: [/graphql](http://localhost:8000/graphql)
 
@@ -14,3 +14,13 @@ To connect to the database:
 To initialise database table, with all containers running, run:
 
 `docker-compose exec graphql alembic upgrade head`
+
+## TODO
+
+- [ ] add custom schema
+- [ ] fix testing
+- [ ] async db query
+- [ ] exception handling and error message
+- [ ] query all users under the same address
+- [ ] pagination
+- [ ] mutations

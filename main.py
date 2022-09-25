@@ -6,9 +6,9 @@ from schemas.schemas import Query, Mutation
 
 
 schema = strawberry.Schema(
-    query=Query, 
+    query=Query,
     mutation=Mutation
-    )
+)
 
 graphql_app = GraphQL(schema)
 

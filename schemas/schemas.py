@@ -5,13 +5,17 @@ import models.models as models
 from database.crud import add_person, get_persons
 
 strawberry_sqlalchemy_mapper = StrawberrySQLAlchemyMapper()
+
+
 @strawberry_sqlalchemy_mapper.type(models.Person)
 class Person:
     pass
 
+
 @strawberry_sqlalchemy_mapper.type(models.Address)
 class Address:
     pass
+
 
 @strawberry.type
 class Query:
@@ -20,11 +24,13 @@ class Query:
         persons = get_persons()
         return persons
 
+
 @strawberry.type
-class Mutation: 
+class Mutation:
     @strawberry.mutation
     def add_person(self, name: str, email: str) -> Person:
         person = add_person(name, email)
         return person
+
 
 strawberry_sqlalchemy_mapper.finalize()
