@@ -1,7 +1,7 @@
-from schemas.schemas import Person
+import pytest
 
-
-def test_get_person(test_app):
+@pytest.mark.asyncio
+async def test_get_person(schema):
     query = """
     query TestQuery {
         person {
@@ -20,7 +20,7 @@ def test_get_person(test_app):
         }
         }
     """
-    result = test_app.execute_sync(query)
+    result = await schema.execute(query)
     assert result.errors is None
     assert result.data['person'] == [
         {

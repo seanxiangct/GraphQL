@@ -19,4 +19,5 @@ def add_person(name: str, email: str) -> Person:
         person = Person(name=name, email=email)
         session.add(person)
         session.commit()
+        session.refresh(person)
         return person

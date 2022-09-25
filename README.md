@@ -15,10 +15,16 @@ To initialise database table, with all containers running, run:
 
 `docker-compose exec graphql alembic upgrade head`
 
+Go to the GraphQL endpoint and explore the API!
+
+## To test
+
+`docker-compose exec graphql pytest tests/`
+
 ## TODO
 
-- [ ] add custom schema
 - [ ] fix testing
+- [ ] add custom schema
 - [ ] async db query
 - [ ] exception handling and error message
 - [ ] query all users under the same address

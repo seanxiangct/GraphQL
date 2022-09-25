@@ -7,7 +7,6 @@ services:
       - db
     build:
       context: .
-      target: final
       dockerfile: ./Dockerfile
     ports:
       - 8000:8000

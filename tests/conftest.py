@@ -1,7 +1,7 @@
 import pytest
 
-from main import schema
+import main
 
 @pytest.fixture(scope='module')
-def test_app():
-    return schema
+def schema():
+    return main.schema
