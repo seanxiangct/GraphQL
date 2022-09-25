@@ -4,12 +4,12 @@ GraphQL Endpoint: [/graphql](http://localhost:8000/graphql)
 
 ## To Run
 
-Run the docker-compose.yml file to start up the service locally with the service and postgreSQL containers
+Run the docker-compose.yml file to start up the services locally with the API service and postgreSQL containers
 
 To connect to the database:
 
 1. shell into the database container
-2. run `psql -U postgres graph_db`
+2. run `psql -U postgres graph_db` connect to the service database
 
 To initialise database table, with all containers running, run:
 
