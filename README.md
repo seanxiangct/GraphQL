@@ -23,7 +23,10 @@ Go to the GraphQL endpoint and explore the API!
 
 ## TODO
 
-- [ ] fix testing
+- [x] many-to-many model
+- [x] database migration
+- [x] schema mapping
+- [x] fix testing
 - [ ] add custom schema
 - [ ] async db query
 - [ ] exception handling and error message
