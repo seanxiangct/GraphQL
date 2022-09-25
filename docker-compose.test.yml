@@ -9,7 +9,7 @@ services:
       context: .
       target: test
       dockerfile: ./Dockerfile
-    command: pytest
+    command: pytest tests/
   db:
     image: postgres:13
     expose:
