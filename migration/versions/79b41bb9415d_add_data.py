@@ -33,6 +33,10 @@ def upgrade() -> None:
     person.addresses.append(Address(number=3, street="Main Street", city="Sydney", state=StateEnum.NSW))
 
     session.add(person)
+
+    person = Person(name="Jane", email="jane@email.com")
+    session.add(person)
+
     session.commit()
 
 
@@ -40,7 +44,8 @@ def downgrade() -> None:
     bind = op.get_bind()
     session = orm.Session(bind=bind)
 
-    session.execute("DELETE FROM person")
+    session.execute("DELETE FROM association")
     session.execute("DELETE FROM address")
+    session.execute("DELETE FROM person")
     session.commit()
     session.close()

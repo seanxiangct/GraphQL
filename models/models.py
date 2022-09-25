@@ -20,8 +20,8 @@ class StateEnum(enum.Enum):
 association_table = Table(
     'association',
     Base.metadata,
-    Column('person_id', Integer, ForeignKey('person.id'), primary_key=True),
-    Column('address_id', Integer, ForeignKey('address.id'), primary_key=True)
+    Column('person_id', Integer, ForeignKey('person.id', ondelete="CASCADE"), primary_key=True),
+    Column('address_id', Integer, ForeignKey('address.id', ondelete="CASCADE"), primary_key=True)
 )
 
 class Person(Base):

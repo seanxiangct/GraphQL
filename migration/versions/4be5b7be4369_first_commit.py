@@ -50,4 +50,5 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_person_id'), table_name='person')
     op.drop_table('person')
     op.drop_table('address')
+    op.execute('DROP TYPE stateenum')
     # ### end Alembic commands ###
