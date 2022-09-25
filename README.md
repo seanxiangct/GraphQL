@@ -1,6 +1,6 @@
 # User GraphQL
 
-GraphQL Endpoint: /graphql[http://localhost:8000/graphql]
+GraphQL Endpoint: [/graphql](http://localhost:8000/graphql)
 
 ## To Run
 
