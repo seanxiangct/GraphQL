@@ -23,7 +23,7 @@ def upgrade() -> None:
     sa.Column('number', sa.Integer(), nullable=True),
     sa.Column('street', sa.String(), nullable=True),
     sa.Column('city', sa.String(), nullable=True),
-    sa.Column('State', sa.Enum('NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT', name='stateenum'), nullable=True),
+    sa.Column('state', sa.Enum('NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT', name='stateenum'), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('person',

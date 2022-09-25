@@ -4,7 +4,7 @@ import strawberry
 # from strawberry_sqlalchemy_mapper import StrawberrySQLAlchemyMapper
 
 import models.models as models
-from database.crud import add_person, get_addresses, get_persons
+from database.crud import add_person, get_persons
 
 # strawberry_sqlalchemy_mapper = StrawberrySQLAlchemyMapper()
 
@@ -48,7 +48,7 @@ class Address:
             state=StateEnum[address.state],
         )
 
-# def get_addresses(name: str) -> list[Address]:
+# def get_addresses() -> list[Address]:
 #     # TODO: get addresses from DB
 #     return [
 #         Address(number=1, street="Main Street", city="Sydney", state=StateEnum.NSW),
@@ -60,9 +60,6 @@ class Person:
     name: str
     email: str
     address: list[Address]
-    # @strawberry.field
-    # def address(self) -> list[Address]:
-    #     return get_addresses(self.id)
     
     @classmethod
     def marshal(cls, person: models.Person):
@@ -72,12 +69,14 @@ class Person:
             address=[Address.marshal(address) for address in models.Person.addresses],
         )
 
-
 @strawberry.type
 class Query:
     @strawberry.field
     def person(self) -> list[Person]:
         persons = get_persons()
+        for row in persons:
+            print(row.id, row.name, row.email, row.addresses)
+            
         return [Person.marshal(person) for person in persons]
 
 @strawberry.type

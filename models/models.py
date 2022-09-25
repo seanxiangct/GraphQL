@@ -37,5 +37,5 @@ class Address(Base):
     number = Column(Integer)
     street = Column(String)
     city = Column(String)
-    State = Column(Enum(StateEnum))
+    state = Column(Enum(StateEnum))
     persons = relationship("Person", secondary=association_table, back_populates="addresses")
