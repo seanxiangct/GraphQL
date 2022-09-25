@@ -3,8 +3,9 @@ from .config import SessionLocal
 
 def get_persons() -> list[Person]:
     with SessionLocal() as session:
-        # query person and their addresses
-        return session.query(Person).filter(Person.id == Address.person_id).all()
+        persons = session.query(Person).filter(Person.addresses.any()).all()
+
+        return persons
 
 def add_person(name: str, email: str) -> Person:
     with SessionLocal() as session:

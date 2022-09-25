@@ -1,10 +1,12 @@
 import enum
 
+import strawberry
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, Enum, Identity
 from sqlalchemy.orm import relationship
 
 from database.config import Base
 
+@strawberry.enum
 class StateEnum(enum.Enum):
     NSW = "NSW"
     VIC = "VIC"
