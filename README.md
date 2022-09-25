@@ -17,6 +17,28 @@ To initialise database table, with all containers running, run:
 
 Go to the GraphQL endpoint and explore the API!
 
+> The current API supports query against **person only** with the following schema. The additional **edges** and **node** types are added for future cursor-based pagination and to reduce code duplication.
+
+```graphql
+query MyQuery {
+  person {
+    email
+    name
+    id
+    addresses {
+      edges {
+        node {
+          number
+          street
+          city
+          state
+        }
+      }
+    }
+  }
+}
+```
+
 ## To test
 
 `docker-compose exec graphql pytest tests/`
