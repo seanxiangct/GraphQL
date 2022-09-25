@@ -3,8 +3,11 @@ version: '3.4'
 services:
   graphql:
     image: graphql
+    depends_on:
+      - db
     build:
       context: .
+      target: final
       dockerfile: ./Dockerfile
     ports:
       - 8000:8000

@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  graphql:
+    image: graphqltest
+    depends_on:
+      - db
+    build:
+      context: .
+      target: test
+      dockerfile: ./Dockerfile
+    command: pytest
+  db:
+    image: postgres:13
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=graph_db
+    volumes:
+      - graph_db:/var/lib/postgresql/data
+  
+volumes:
+  graph_db:

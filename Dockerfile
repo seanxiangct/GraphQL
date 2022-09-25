@@ -21,6 +21,6 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 FROM test-base as test
 
-CMD ["pytest", "tests/"]
+CMD ["pytest"]
 
 FROM build as final
