@@ -1,60 +1,14 @@
-from enum import Enum
-
 import strawberry
 from fastapi import FastAPI
 from strawberry.asgi import GraphQL
 
-@strawberry.enum
-class StateEnum(Enum):
-    NSW = "NSW"
-    VIC = "VIC"
-    QLD = "QLD"
-    SA = "SA"
-    WA = "WA"
-    TAS = "TAS"
-    NT = "NT"
-    ACT = "ACT"
+from schemas.schemas import Query, Mutation
 
 
-@strawberry.type
-class Address:
-    number: int
-    street: str
-    city: str
-    state: StateEnum
-
-def get_addresses(name: str) -> list[Address]:
-    # TODO: get addresses from DB
-    return [
-        Address(number=1, street="Main Street", city="Sydney", state=StateEnum.NSW),
-        Address(number=2, street="Main Street", city="Sydney", state=StateEnum.NSW),
-    ]
-
-
-@strawberry.type
-class Person:
-    # id: uuid.UUID
-    name: str
-    email: str
-    # address: Address = strawberry.field(resolver=get_addresses(name))
-    @strawberry.field
-    def address(self) -> list[Address]:
-        return get_addresses(self.name)
-
-
-persons: list[Person] = []
-
-@strawberry.type
-class Query:
-    @strawberry.field
-    def Person(self) -> Person:
-        return Person(
-            name="Patrick",
-            email="test@email.com"
-        )
-
-
-schema = strawberry.Schema(query=Query)
+schema = strawberry.Schema(
+    query=Query, 
+    mutation=Mutation
+    )
 
 graphql_app = GraphQL(schema)
 
