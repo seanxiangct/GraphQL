@@ -44,9 +44,6 @@ class Query:
     def person(self) -> list[Person]:
         persons = get_persons()
 
-        # convert models to strawberry types
-        
-
         return [Person.from_model(person) for person in persons]
 
 
